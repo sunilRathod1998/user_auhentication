@@ -1,18 +1,41 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block home %} {% for msg in messages %}
+<h4>{{msg.tags}}: {{msg}}</h4>
+{% endfor %}
+<div class="header">
+  <div class="container">
+    <div class="row align-items-center justify-content-align-content-between">
+      <div class="logo">
+        <a href="#">user authentication</a>
+      </div>
+      <button type='button' class='nav_toggler'>
+          <span></span>
+          <span></span>
+          <span></span>
+      </button>
 
-{% block home %}
-{% for msg in messages  %}
-    <h4>{{msg.tags}}: {{msg}}</h4>
-    {% endfor %}
+      <div class="nav">
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">Signup</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">logout</a></li>
+        </ul>
+    </div>
+    </div>
+  </div>
+</div>
 
+{% if user.is_authenticated %}
+<h1>Welcome {{name}}</h1>
+<button class="btn btn-primary" type="submit">
+  <a href="/logout">signout</a>
+</button>
+{% else %}
 
-    {% if user.is_authenticated %}
-    <h1>Welcome {{name}}</h1>
-    <button type="submit"><a href="/logout">signout</a></button>
-    {% else %}
-    
-    <button type="submit"><a href="signup/">signup</a></button>
-    <button type="submit"><a href="login/">signin</a></button>
-    {% endif %}
-{% endblock home %}
-
+<button class="btn btn-primary" type="submit">
+  <a href="signup/">signup</a>
+</button>
+<button class="btn btn-primary" type="submit">
+  <a href="login/">signin</a>
+</button>
+{% endif %} {% endblock home %}
